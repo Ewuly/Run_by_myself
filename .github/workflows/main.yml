@@ -1,0 +1,21 @@
+name: Try to use self-hosted runner
+
+on:
+  push:
+
+
+jobs:
+  test:
+    runs-on: self-hosted
+    permissions:
+      issues: write
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ github.token }}
+      - name: Display the readme
+        run: cat README.md
